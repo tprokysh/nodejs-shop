@@ -1,0 +1,24 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Game Shop</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {{#if activeHome}}
+            <li class="active"><a href="/">Home</a></li>
+            {{else}}
+            <li><a href="/">Home</a></li>
+            {{/if}}
+
+            {{#if activeGames}}
+            <li class="active"><a href="/games">Games</a></li>
+            {{else}}
+            <li><a href="/games">Games</a></li>
+            {{/if}}
+
+            {{#if activeAdd}}
+            <li class="active"><a href="/add">Add Game</a></li>
+            {{else}}
+            <li><a href="/add">Add Game</a></li>
+            {{/if}}
+        </ul>
+    </div>
+</nav>

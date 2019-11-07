@@ -12,13 +12,27 @@ const hbs = exphbs.create({
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 app.set("views", "views");
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {
+    title: "Home",
+    activeHome: true
+  });
 });
 
-app.get("/about", (req, res) => {
-  res.render("about");
+app.get("/add", (req, res) => {
+  res.render("add", {
+    title: "Add Game",
+    activeAdd: true
+  });
+});
+
+app.get("/games", (req, res) => {
+  res.render("games", {
+    title: "Games",
+    activeGames: true
+  });
 });
 
 const PORT = process.env.PORT || 3000;
