@@ -1,1 +1,23 @@
 <h1>Games</h1>
+
+{{#if games.length}}
+{{#each games}}
+<div class="row">
+    <div class="col s6 m4">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{img}}" alt="{{img}}">
+            </div>
+            <div class="card-content">
+                <p class="price"></p>
+            </div>
+            <div class="card-action">
+                <a href="#">Open the Game</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+{{else}}
+<p>Games not found</p>
+{{/if}}

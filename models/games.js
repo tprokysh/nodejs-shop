@@ -2,7 +2,7 @@ const uuid = require("uuid/v4");
 const fse = require("fs-extra");
 const path = require("path");
 
-class Course {
+class Games {
   constructor(title, price, img) {
     this.title = title;
     this.price = price;
@@ -15,7 +15,7 @@ class Course {
     let filename = file.name;
     file.mv("./public/img/" + filename);
 
-    const games = await Course.getAll();
+    const games = await Games.getAll();
 
     games.push(this.toJson());
 
@@ -48,10 +48,10 @@ class Course {
     return {
       title: this.title,
       price: this.price,
-      img: this.img.file.name,
+      img: "img/" + this.img.file.name,
       id: this.id
     };
   }
 }
 
-module.exports.Course = Course;
+module.exports = Games;

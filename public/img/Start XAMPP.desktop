@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=true
+Icon[en_US]=gnome-panel-launcher
+Name[en_US]=Start XAMPP
+Exec=sudo /opt/lampp/lampp start
+Comment[en_US]=Start xampp server
+Name=Start XAMPP
+Comment=Start xampp server
+Icon=gnome-panel-launcher

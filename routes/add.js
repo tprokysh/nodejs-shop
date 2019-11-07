@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const fileupload = require("express-fileupload");
-const Course = require("../models/games").Course;
+const Games = require("../models/games");
 const router = Router();
 
 router.use(fileupload());
@@ -12,12 +12,12 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   //console.log(req.body);
-  const games = new Course(req.body.title, req.body.price, req.files);
+  const games = new Games(req.body.title, req.body.price, req.files);
 
-  games.save();
-
+  await games.save();
+  res.status(200);
   res.redirect("/games");
 });
 
