@@ -1,6 +1,9 @@
 const express = require("express");
 const path = require("path");
 const exphbs = require("express-handlebars");
+const homeRoute = require("./routes/home");
+const addRoute = require("./routes/add");
+const gamesRoute = require("./routes/games");
 
 const app = express();
 
@@ -13,27 +16,11 @@ app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 app.set("views", "views");
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Home",
-    activeHome: true
-  });
-});
-
-app.get("/add", (req, res) => {
-  res.render("add", {
-    title: "Add Game",
-    activeAdd: true
-  });
-});
-
-app.get("/games", (req, res) => {
-  res.render("games", {
-    title: "Games",
-    activeGames: true
-  });
-});
+app.use("/", homeRoute);
+app.use("/add", addRoute);
+app.use("/games", gamesRoute);
 
 const PORT = process.env.PORT || 3000;
 

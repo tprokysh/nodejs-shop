@@ -1,1 +1,28 @@
 <h1>Add Game</h1>
+
+<form action="/add" method="POST" enctype="multipart/form-data">
+    <div class="input-field ">
+        <input id="title" name="title" type="text" class="validate" required>
+        <label for="title">Name of the Game</label>
+        <span class="helper-text" data-error="Enter the title"></span>
+    </div>
+
+    <div class="input-field">
+        <input id="price" name="price" type="number" class="validate" required min="0">
+        <label for="price">Price</label>
+        <span class="helper-text" data-error="Enter the price"></span>
+    </div>
+
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>Select Image</span>
+            <input type="file" name="file" required>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+        <span class="helper-text" data-error="Select the price"></span>
+    </div>
+
+    <button class="btn btn-primary">Add</button>
+</form>
