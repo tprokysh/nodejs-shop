@@ -21,4 +21,11 @@ router.post("/buy", async (req, res) => {
   res.redirect("/card");
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  const card = await Card.deleteGame(req.params.id);
+  console.log(card);
+
+  res.status(200).json(card);
+});
+
 module.exports = router;
