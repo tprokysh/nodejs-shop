@@ -1,14 +1,14 @@
-<h1>Add Game</h1>
+<h1>Edit {{title}}</h1>
 
-<form action="/add" method="POST" enctype="multipart/form-data">
+<form action="/games/edit" method="POST" enctype="multipart/form-data">
     <div class="input-field ">
-        <input id="title" name="title" type="text" class="validate" required>
+        <input id="title" name="title" type="text" class="validate" value="{{title}}" required>
         <label for="title">Name of the Game</label>
         <span class="helper-text" data-error="Enter the title"></span>
     </div>
 
     <div class="input-field">
-        <input id="price" name="price" type="number" class="validate" required min="0">
+        <input id="price" name="price" type="number" class="validate" value="{{price}}" required min="0">
         <label for="price">Price</label>
         <span class="helper-text" data-error="Enter the price"></span>
     </div>
@@ -16,7 +16,7 @@
     <div class="file-field input-field">
         <div class="btn">
             <span>Select Image</span>
-            <input type="file" name="image" required>
+            <input type="file" name="image" required value="{{img}}">
         </div>
         <div class="file-path-wrapper">
             <input class="file-path validate" type="text">
@@ -24,7 +24,7 @@
         <span class="helper-text" data-error="Select the price"></span>
     </div>
 
+    <input type="hidden" name="id" value="{{id}}">
 
-
-    <button class="btn btn-primary">Add</button>
+    <button class="btn btn-primary">Edit</button>
 </form>

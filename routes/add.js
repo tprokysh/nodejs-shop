@@ -1,9 +1,22 @@
 const { Router } = require("express");
-const fileupload = require("express-fileupload");
 const Games = require("../models/games");
+const multer = require("multer");
+const path = require("path");
 const router = Router();
 
-router.use(fileupload());
+const storage = multer.diskStorage({
+  destination: "./public/img",
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  }
+});
+
+const upload = multer({
+  storage: storage
+}).single("image");
 
 router.get("/", (req, res) => {
   res.render("add", {
@@ -12,13 +25,15 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", async (req, res) => {
-  //console.log(req.body);
-  const games = new Games(req.body.title, req.body.price, req.files);
+router.post("/", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) throw err;
+    console.log(req.file);
+    const games = new Games(req.body.title, req.body.price, req.file.filename);
 
-  await games.save();
-  res.status(200);
-  res.redirect("/games");
+    games.save();
+    res.redirect("/games");
+  });
 });
 
 module.exports = router;
