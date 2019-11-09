@@ -1,4 +1,4 @@
 {
   "verbose": true,
-  "ignore": ["games.json"]
+  "ignore": ["games.json", "card.json"]
 }

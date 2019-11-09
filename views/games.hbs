@@ -11,11 +11,15 @@
                 <span class="card-title">{{title}}</span>
             </div>
             <div class="card-content">
-                <p class="price"></p>
+                <p class="price">{{price}}</p>
             </div>
-            <div class="card-action">
-                <a href="/games/{{id}}">Open the Game</a>
-                <a href="/games/{{id}}/edit">Edit the Game</a>
+            <div class="card-action buttons">
+                <a href="/games/{{id}}">Open</a>
+                <a href="/games/{{id}}/edit">Edit</a>
+                <form action="/card/buy" method="POST">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button type="submit" class="btn btn-primary">Buy</button>
+                </form>
             </div>
         </div>
     </div>
