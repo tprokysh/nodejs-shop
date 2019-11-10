@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/buy", async (req, res) => {
-  const game = await Games.getById(req.body.id);
+  const game = await Games.findById(req.body.id);
   console.log(game);
 
   await Card.add(game);
@@ -23,7 +23,6 @@ router.post("/buy", async (req, res) => {
 
 router.delete("/delete/:id", async (req, res) => {
   const card = await Card.deleteGame(req.params.id);
-  console.log(card);
 
   res.status(200).json(card);
 });

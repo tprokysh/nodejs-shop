@@ -19,7 +19,7 @@ const upload = multer({
 }).single("image");
 
 router.get("/", async (req, res) => {
-  const games = await Games.getAll();
+  const games = await Games.find();
   res.render("games", {
     title: "Games",
     activeGames: true,
@@ -28,23 +28,27 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
 
-  const game = await Games.getById(req.params.id);
+  const game = await Games.findById(req.params.id);
   res.render("game", game);
 });
 
 router.get("/:id/edit", async (req, res) => {
   if (!req.query) return res.redirect("/");
-  const game = await Games.getById(req.params.id);
+  const game = await Games.findById(req.params.id);
   res.render("edit-game", game);
 });
 
 router.post("/edit", async (req, res) => {
-  await upload(req, res, (err) => {
+  upload(req, res, async (err) => {
     if (err) throw new Error(err);
+    const { id } = req.body;
+    delete req.body.id;
+    req.body.img = req.file.filename;
+    console.log(req.body);
 
-    Games.updateGame(req.body, req.file.filename);
+    await Games.findByIdAndUpdate(id, req.body);
 
     res.redirect("/games");
   });

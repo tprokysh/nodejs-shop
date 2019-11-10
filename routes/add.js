@@ -25,14 +25,23 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", (req, res) => {
-  upload(req, res, (err) => {
+router.post("/", async (req, res) => {
+  upload(req, res, async (err) => {
     if (err) throw err;
     console.log(req.file);
-    const games = new Games(req.body.title, req.body.price, req.file.filename);
+    // const games = new Games(req.body.title, req.body.price, req.file.filename);
+    const games = new Games({
+      title: req.body.title,
+      price: req.body.price,
+      img: req.file.filename
+    });
 
-    games.save();
-    res.redirect("/games");
+    try {
+      await games.save();
+      res.redirect("/games");
+    } catch (err) {
+      console.log(err);
+    }
   });
 });
 

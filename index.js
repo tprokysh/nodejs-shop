@@ -29,10 +29,11 @@ const PORT = process.env.PORT || 3000;
 
 async function start() {
   try {
-    const url = `mongodb+srv://tal:2356945t@cluster0-iimrd.mongodb.net/test?retryWrites=true&w=majority`;
+    const url = `mongodb+srv://tal:2356945t@cluster0-iimrd.mongodb.net/nodejs-shop`;
     await mongoose.connect(url, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: true
     });
 
     app.listen(PORT, () => {
