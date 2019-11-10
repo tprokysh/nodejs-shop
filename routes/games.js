@@ -3,6 +3,7 @@ const Games = require("../models/games");
 const multer = require("multer");
 const path = require("path");
 const router = Router();
+const fse = require("fs-extra");
 
 const storage = multer.diskStorage({
   destination: "./public/img",
@@ -38,6 +39,21 @@ router.get("/:id/edit", async (req, res) => {
   if (!req.query) return res.redirect("/");
   const game = await Games.findById(req.params.id);
   res.render("edit-game", game);
+});
+
+router.post("/delete", async (req, res) => {
+  try {
+    img = await Games.findById(req.body.id);
+    fse.unlink(path.join(__dirname, "..", "public", "img", img.img));
+
+    await Games.deleteOne({
+      _id: req.body.id
+    });
+
+    res.redirect("/games");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.post("/edit", async (req, res) => {

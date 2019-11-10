@@ -31,3 +31,7 @@ img {
   align-items: center;
   justify-content: space-between;
 }
+
+.delete-form {
+  margin-top: 2rem;
+}

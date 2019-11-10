@@ -26,5 +26,10 @@
 
     <input type="hidden" name="id" value="{{id}}">
 
-    <button class="btn btn-primary">Edit</button>
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+
+<form class="delete-form" action="/games/delete" method="POST">
+    <input type="hidden" name="id" value="{{id}}">
+    <button class="btn red" type="submit">Delete</button>
 </form>
