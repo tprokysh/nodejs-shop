@@ -15,12 +15,9 @@ const hbs = exphbs.create({
   extname: "hbs"
 });
 app.use(async (req, res, next) => {
-  console.log("!!!!!!!!");
-
   try {
     const user = await User.findById("5dc97794d95bb559de44d807");
     req.user = user;
-    console.log(req.user);
 
     next();
   } catch (err) {

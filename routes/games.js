@@ -24,8 +24,6 @@ router.get("/", async (req, res) => {
     .populate("userId", "mail name")
     .select("price title img");
 
-  console.log(games);
-
   res.render("games", {
     title: "Games",
     activeGames: true,
@@ -34,8 +32,6 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  //console.log(req.body);
-
   const game = await Games.findById(req.params.id);
   res.render("game", game);
 });
@@ -67,7 +63,6 @@ router.post("/edit", async (req, res) => {
     const { id } = req.body;
     delete req.body.id;
     req.body.img = req.file.filename;
-    console.log(req.body);
 
     await Games.findByIdAndUpdate(id, req.body);
 

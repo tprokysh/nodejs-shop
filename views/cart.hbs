@@ -1,6 +1,7 @@
 <h1>Card</h1>
-<div id="card">
-    {{#if card.games.length}}
+{{!-- <h1>{{cart.length}}</h1> --}}
+<div id="cart">
+    {{#if cart.length}}
     <table>
         <thead>
             <tr>
@@ -10,17 +11,17 @@
             </tr>
         </thead>
         <tbody>
-            {{#each card.games}}
+            {{#each cart}}
             <tr>
-                <td>{{title}}</td>
+                <td>{{gameId.title}}</td>
                 <td>{{count}}</td>
-                <td>{{price}}</td>
+                <td>{{gameId.price}}</td>
                 <td><button class="btn btn-small" data-id="{{id}}">Delete</button></td>
             </tr>
             {{/each}}
         </tbody>
     </table>
-    <p>Price: <span class="price">{{card.price}}</span></p>
+    <p>Price: <span class="price">{{calcPrice}}</span></p>
     {{else}}
     <p>Card emty</p>
     {{/if}}

@@ -29,12 +29,8 @@ const users = new Schema({
 
 users.methods.addGame = function(game) {
   const gamesClone = [...this.cart.games];
-  console.log(this.cart.games);
 
-  //console.log(game);
   const id = gamesClone.findIndex((id) => {
-    console.log();
-
     return id.gameId.toString() === game._id.toString();
   });
 
@@ -48,7 +44,6 @@ users.methods.addGame = function(game) {
   }
 
   this.cart = { games: gamesClone };
-  console.log(id);
   return this.save();
 };
 
