@@ -28,12 +28,13 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   upload(req, res, async (err) => {
     if (err) throw err;
-    console.log(req.file);
+    console.log(req.user);
     // const games = new Games(req.body.title, req.body.price, req.file.filename);
     const games = new Games({
       title: req.body.title,
       price: req.body.price,
-      img: req.file.filename
+      img: req.file.filename,
+      userId: req.user
     });
 
     try {

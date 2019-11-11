@@ -20,7 +20,12 @@ const upload = multer({
 }).single("image");
 
 router.get("/", async (req, res) => {
-  const games = await Games.find();
+  const games = await Games.find()
+    .populate("userId", "mail name")
+    .select("price title img");
+
+  console.log(games);
+
   res.render("games", {
     title: "Games",
     activeGames: true,
